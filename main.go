@@ -27,21 +27,21 @@ type CoreResponse struct {
 
 type UserResponse struct {
 	ApiResponse CoreResponse `json:"apiResponse"`
-	Data UserDescription `json:"data"`
+	Data []UserDescription `json:"data"`
 }
 
 func main() {
 	
 	viper.AutomaticEnv()
 	viper.SetEnvKeyReplacer(strings.NewReplacer(".", "_"))
-	port := viper.GetString("port")
+	// port := viper.GetString("port")
 	
 
 	router := mux.NewRouter()
 	router.HandleFunc("/login", login).Methods("POST")
 
 	fmt.Println("Starting RESTFUL....")
-	http.ListenAndServe(":"+port,router)
+	http.ListenAndServe(":8080",router)
 }
 
 func login(w http.ResponseWriter, r *http.Request) {
@@ -50,16 +50,20 @@ func login(w http.ResponseWriter, r *http.Request) {
 
 	var auth UserAuth
 	var response UserResponse
+	var user UserDescription
 
 	json.NewDecoder(r.Body).Decode(&auth)
 
 	if auth.Username == "admin" && auth.Password == "admin123" {
 		response.ApiResponse.ID = 0
 		response.ApiResponse.Description = "Success"
-		response.Data.Name = "Preuttipan"
-		response.Data.LastName = "Janpen"
-		response.Data.Age = "26"
+		
+		user.Name = "Preuttipan"
+		user.LastName = "Janpen"
+		user.Age = "26"
 
+		response.Data = append(response.Data, user)
+		
 		json.NewEncoder(w).Encode(response)
 	} else {
 		response.ApiResponse.ID = -1
