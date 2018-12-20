@@ -51,7 +51,7 @@ func login(w http.ResponseWriter, r *http.Request) {
 		response.ApiResponse.Description = "Success"
 		response.Data.Name = "Preuttipan"
 		response.Data.LastName = "Janpen"
-		response.Data.Age = "23"
+		response.Data.Age = "26"
 
 		json.NewEncoder(w).Encode(response)
 	} else {
