@@ -1,10 +1,12 @@
 package main
 
 import (
+	"strings"
 	"fmt"
 	"encoding/json"
 	"net/http"
 	"github.com/gorilla/mux"
+	"github.com/spf13/viper"
 )
 
 type UserAuth struct {
@@ -29,12 +31,17 @@ type UserResponse struct {
 }
 
 func main() {
-	router := mux.NewRouter()
+	
+	viper.AutomaticEnv()
+	viper.SetEnvKeyReplacer(strings.NewReplacer(".", "_"))
+	port := viper.GetString("port")
+	
 
+	router := mux.NewRouter()
 	router.HandleFunc("/login", login).Methods("POST")
 
 	fmt.Println("Starting RESTFUL....")
-	http.ListenAndServe(":8080",router)
+	http.ListenAndServe(":"+port,router)
 }
 
 func login(w http.ResponseWriter, r *http.Request) {
