@@ -34,14 +34,14 @@ func main() {
 	
 	viper.AutomaticEnv()
 	viper.SetEnvKeyReplacer(strings.NewReplacer(".", "_"))
-	// port := viper.GetString("port")
+	port := viper.GetString("port")
 	
 
 	router := mux.NewRouter()
 	router.HandleFunc("/login", login).Methods("POST")
 
 	fmt.Println("Starting RESTFUL....")
-	http.ListenAndServe(":8080",router)
+	http.ListenAndServe(":"+port,router)
 }
 
 func login(w http.ResponseWriter, r *http.Request) {
@@ -63,7 +63,7 @@ func login(w http.ResponseWriter, r *http.Request) {
 		user.Age = "26"
 
 		response.Data = append(response.Data, user)
-		
+
 		json.NewEncoder(w).Encode(response)
 	} else {
 		response.ApiResponse.ID = -1
