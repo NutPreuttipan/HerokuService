@@ -13,7 +13,7 @@ func main() {
 	
 	viper.AutomaticEnv()
 	viper.SetEnvKeyReplacer(strings.NewReplacer(".", "_"))
-	// port := viper.GetString("port")
+	port := viper.GetString("port")
 	
 	mainController := Controllers.Controller{}
 
@@ -22,5 +22,5 @@ func main() {
 	router.HandleFunc("/profile", mainController.Profile()).Methods("POST")
 
 	fmt.Println("Starting Service....")
-	http.ListenAndServe(":8080",router)
+	http.ListenAndServe(":"+port,router)
 }
