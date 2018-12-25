@@ -1,4 +1,4 @@
-package models
+package Models
 
 type UserModel struct {
 	ID int `json:"id"`
@@ -20,12 +20,7 @@ type AddressDetail struct {
 	Zipcode string `json:"zipcode"`
 }
 
-type CoreResponse struct {
-	ID int `json:"id"`
-	Description string `json:"desc"`
-}
-
-type UserModelResponse struct {
+type ProfileResponse struct {
 	ApiResponse CoreResponse `json:"apiResponse"`
 	Data []UserModel `json:"data"`
 }
