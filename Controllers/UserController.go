@@ -22,7 +22,7 @@ func (c Controller) Login() http.HandlerFunc {
 			response.ApiResponse.ID = 0
 			response.ApiResponse.Description = "Success"
 			 
-			user.Name = "Nuttariak"
+			user.Name = "Nuttarikan"
 			user.LastName = "Pattanaporn"
 			user.Age = "23"
 	
