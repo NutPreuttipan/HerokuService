@@ -21,10 +21,10 @@ func (c Controller) Login() http.HandlerFunc {
 		if auth.Username == "admin" && auth.Password == "admin123" {
 			response.ApiResponse.ID = 0
 			response.ApiResponse.Description = "Success"
-			
-			user.Name = "Preuttipan"
-			user.LastName = "Janpen"
-			user.Age = "26"
+			 
+			user.Name = "Nuttariak"
+			user.LastName = "Pattanaporn"
+			user.Age = "23"
 	
 			response.Data = append(response.Data, user)
 	
