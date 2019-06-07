@@ -57,14 +57,14 @@ func (c Controller) Profile() http.HandlerFunc {
 	
 		json.NewDecoder(r.Body).Decode(&user)
 	
-		if user.Name == "Preuttipan" {
+		if user.Name == "Nuttarikan" {
 	
 			response.ApiResponse.ID = 0
 			response.ApiResponse.Description = "Success"
 	
 			userDetail.ID = 1
-			userDetail.Name = "Preuttipan"
-			userDetail.Lname = "Janpen"
+			userDetail.Name = "Nuttarikan"
+			userDetail.Lname = "Pattanaporn"
 			userDetail.Address.Home = homeAddress
 			userDetail.Address.Work = workAddress
 	
